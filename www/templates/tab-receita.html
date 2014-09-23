@@ -1,0 +1,9 @@
+<ion-view title="Receita">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="receita in receitas" type="item-text-wrap" href="#/tab/receita/{{receita.id}}">
+        {{receita.name}}: R$ {{receita.value}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
