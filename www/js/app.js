@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
 
     var admob_ios_key = 'ca-app-pub-5728861242665708/7424493963';
-    var admob_android_key = 'Your Key';
+    var admob_android_key = 'ca-app-pub-5728861242665708/7424493963';
     var adId = (navigator.userAgent.indexOf('Android') >=0) ? admob_android_key : admob_ios_key;
     
     
