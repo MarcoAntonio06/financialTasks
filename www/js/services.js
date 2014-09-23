@@ -40,7 +40,7 @@ angular.module('starter.services', [])
     },
     get: function(despesaId) {
       // Simple index lookup
-      return despesas[receitaId];
+      return despesas[despesaId];
     },
   }
 });
