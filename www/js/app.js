@@ -18,6 +18,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    var admob_ios_key = 'ca-app-pub-5728861242665708/7424493963';
+    var admob_android_key = 'Your Key';
+    var adId = (navigator.userAgent.indexOf('Android') >=0) ? admob_android_key : admob_ios_key;
+    
+    
+    function createAd() {
+            if ( window.plugins && window.plugins.AdMob ) {
+                var am = window.plugins.AdMob;
+                am.createBannerView(
+                                    {
+                                    'publisherId': adId,
+                                    'adSize': am.AD_SIZE.BANNER,
+                                    'bannerAtTop': false
+                                    }, function() {
+                                    am.requestAd( { 'isTesting':false }, function() {
+                                                 am.showAd( true );
+                                                 }, function() {
+                                                 alert('failed to request ad');
+                                                 })
+                                    }, function(){
+                                    alert( "failed to create ad view" );
+                                    });
+                                    
+                                    
+            } else {
+                alert('AdMob plugin not available/ready.');
+            }
+        }
+        createAd();
   });
 })
 
