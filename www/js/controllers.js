@@ -1,34 +1,52 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, Receitas, Despesas) {
-    var despesa = Despesas.all();
-    var receita = Receitas.all();
+.controller('DashCtrl', function($scope, Financas) {
 
-    $scope.saldo = 0;
-    for (i in despesa) {
-        console.log('A' + despesa[i].value);
-        $scope.saldo += despesa[i].value;
+    $scope.typeList = [
+        { text: "Despesa", value: "despesa" },
+        { text: "Receita", value: "receita" },
+    ];
+
+    $scope.data = {
+        defaultType: 'despesa'
+    };
+
+    $scope.saldo = Financas.sumReceita() - Financas.sumDespesa();
+
+    $scope.classeSaldo = '';
+    if ($scope.saldo > 0) {
+        $scope.classeSaldo = 'balanced';
     }
-    console.log('1' + $scope.saldo);
-    for (i in receita) {
-        console.log('B' + receita[i].value);
-        $scope.saldo += receita[i].value;
+    if ($scope.saldo < 0) {
+        $scope.classeSaldo = 'assertive';
     }
-    console.log('2' + $scope.saldo);
 })
 
-.controller('ReceitaCtrl', function($scope, Receitas) {
-  $scope.receitas = Receitas.all();
+.controller('OperacaoCtrl', function($scope) {
+
+    $scope.typeList = [
+        { text: "Despesa", value: "despesa" },
+        { text: "Receita", value: "receita" },
+    ];
+
+    $scope.data = {
+        defaultType: 'despesa'
+    };
+console.log('4|OperacaoCtrl');
 })
 
-.controller('ReceitaDetailCtrl', function($scope, $stateParams, Receitas) {
-  $scope.receita = Receitas.get($stateParams.receitaId);
+.controller('ReceitaCtrl', function($scope, Financas) {
+  $scope.receitas = Financas.allReceitas();
 })
 
-.controller('DespesaCtrl', function($scope, Despesas) {
-  $scope.despesas = Despesas.all();
+.controller('ReceitaDetailCtrl', function($scope, $stateParams, Financas) {
+  $scope.receita = Financas.get($stateParams.financaId);
 })
 
-.controller('DespesaDetailCtrl', function($scope, $stateParams, Despesas) {
-  $scope.despesa = Despesas.get($stateParams.despesaId);
+.controller('DespesaCtrl', function($scope, Financas) {
+  $scope.despesas = Financas.allDespesas();
+})
+
+.controller('DespesaDetailCtrl', function($scope, $stateParams, Financas) {
+  $scope.despesa = Financas.get($stateParams.financaId);
 });

@@ -78,6 +78,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.operacao', {
+      url: '/dash/operacao',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/operacao.html',
+          controller: 'OperacaoCtrl'
+        }
+      }
+    })
+
     .state('tab.receita', {
       url: '/receita',
       views: {
@@ -88,7 +98,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     .state('tab.receita-detail', {
-      url: '/receita/:receitaId',
+      url: '/receita/:financaId',
       views: {
         'tab-receita': {
           templateUrl: 'templates/receita-detail.html',
@@ -107,7 +117,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     .state('tab.despesa-detail', {
-      url: '/despesa/:despesaId',
+      url: '/despesa/:financaId',
       views: {
         'tab-despesa': {
           templateUrl: 'templates/despesa-detail.html',
