@@ -22,17 +22,34 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('OperacaoCtrl', function($scope) {
+.controller('OperacaoCtrl', function($scope, $state, Financas) {
+
+    $scope.financa = { id: Financas.lastId(), name: '', value: '', description: '', type: 'despesa'};
 
     $scope.typeList = [
         { text: "Despesa", value: "despesa" },
         { text: "Receita", value: "receita" },
     ];
 
-    $scope.data = {
-        defaultType: 'despesa'
+    $scope.erros = [];
+    $scope.adicionaItem = function (financa, financaForm) {
+        if (financaForm.name.$error.required) {
+            $scope.erros.push({campo: 'Nome', descricao: 'Campo brigatório'});
+        }
+
+        if (financaForm.value.$error.required) {
+            $scope.erros.push({campo: 'Valor', descricao: 'Obrigatório'});
+        }
+
+        if (financaForm.name.$error.minlength) {
+            $scope.erros.push({campo: 'Nome', descricao: 'Muito Curto'});
+        }
+
+        if (financaForm.$valid) {
+            Financas.add(financa);
+            $state.transitionTo('tab.dash');
+        }
     };
-console.log('4|OperacaoCtrl');
 })
 
 .controller('ReceitaCtrl', function($scope, Financas) {
