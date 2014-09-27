@@ -24,7 +24,7 @@ angular.module('starter.controllers', [])
 
 .controller('OperacaoCtrl', function($scope, $state, Financas) {
 
-    $scope.financa = { id: Financas.lastId(), name: '', value: '', description: '', type: 'despesa'};
+    $scope.financa = Financas.newObject();
 
     $scope.typeList = [
         { text: "Despesa", value: "despesa" },
@@ -34,11 +34,11 @@ angular.module('starter.controllers', [])
     $scope.erros = [];
     $scope.adicionaItem = function (financa, financaForm) {
         if (financaForm.name.$error.required) {
-            $scope.erros.push({campo: 'Nome', descricao: 'Campo brigatório'});
+            $scope.erros.push({campo: 'Nome', descricao: 'Campo obrigatório'});
         }
 
         if (financaForm.value.$error.required) {
-            $scope.erros.push({campo: 'Valor', descricao: 'Obrigatório'});
+            $scope.erros.push({campo: 'Valor', descricao: 'Campo obrigatório'});
         }
 
         if (financaForm.name.$error.minlength) {

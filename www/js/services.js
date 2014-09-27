@@ -3,28 +3,27 @@ angular.module('starter.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('Financas', function() {
+.factory('Financas', ['$window', function($window) {
   // Might use a resource here that returns a JSON array
 
   var id = 1;
-  var financas = [{}];
-//  // Some fake testing data
-//  var financas = [
-//    { id: 0, name: 'Salário', value: 100.01, description: 'Descrição de Salário', type: 'receita' },
-//    { id: 1, name: 'Bônus', value: 10.09, description: 'Descrição de Bônus', type: 'receita' },
-//    { id: 2, name: 'Hora Extra', value: 50.55, description: 'Descrição de Hora Extra', type: 'receita' },
-//    { id: 3, name: '13º', value: 100.33, description: 'Descrição de Décimo Terceiro', type: 'receita' },
-//    { id: 4, name: 'IR', value: 7.08, description: 'Descrição de Imposto de Renda', type: 'despesa' },
-//    { id: 5, name: 'Luz', value: 9.09, description: 'Descrição de Luz Elétrica', type: 'despesa' },
-//    { id: 6, name: 'Celular', value: 42.06, description: 'Descrição de Celular', type: 'despesa' }
-//  ];
+  if (typeof $window.localStorage['idFinancas'] != "undefined") {
+    id = $window.localStorage['idFinancas'];
+  }
+  $window.localStorage['idFinancas'] = id;
+
+  var financas = JSON.parse($window.localStorage['Financas'] || '[{}]');
 
   return {
+    newObject: function() {
+      return { id: this.lastId(), name: '', value: '', description: '', type: 'despesa'};
+    },
     add: function(financa) {
       financas.push(financa);
+      $window.localStorage['Financas'] = JSON.stringify(financas);
     },
     lastId: function() {
-      return id++;
+      return $window.localStorage['idFinancas']++;
     },
     all: function() {
       return financas;
@@ -70,4 +69,4 @@ angular.module('starter.services', [])
       return despesa;
     },
   }
-});
+}]);
