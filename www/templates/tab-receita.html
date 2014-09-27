@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="receita in receitas" type="item-text-wrap" href="#/tab/receita/{{receita.id}}">
-        {{receita.name}}: R$ {{receita.value}}
+        {{receita.name}}: {{receita.value | currency}}
       </ion-item>
     </ion-list>
   </ion-content>

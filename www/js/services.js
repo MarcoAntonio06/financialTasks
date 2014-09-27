@@ -19,7 +19,7 @@ angular.module('starter.services', [])
       return { id: this.lastId(), name: '', value: '', description: '', type: 'despesa'};
     },
     add: function(financa) {
-      financas.push(financa);
+      financas.splice(financa.id, 0, financa);
       $window.localStorage['Financas'] = JSON.stringify(financas);
     },
     lastId: function() {
@@ -29,8 +29,10 @@ angular.module('starter.services', [])
       return financas;
     },
     get: function(financaId) {
-      // Simple index lookup
-      return financas[financaId];
+      var result = financas.filter(function ( result ) {
+          return result.id == financaId;
+      })[0];
+      return result;
     },
     sumReceita: function() {
       var saldo = 0;

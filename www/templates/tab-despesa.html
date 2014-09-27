@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="despesa in despesas" type="item-text-wrap" href="#/tab/despesa/{{despesa.id}}">
-        {{despesa.name}}: R$ {{despesa.value}}
+        {{despesa.name}}: {{despesa.value | currency}}
       </ion-item>
     </ion-list>
   </ion-content>
