@@ -12,13 +12,19 @@ angular.module('starter.services', [])
   }
   $window.localStorage['idFinancas'] = id;
 
-  var financas = JSON.parse($window.localStorage['Financas'] || '[{}]');
+  var financas = JSON.parse($window.localStorage['Financas'] || '[{id : 0}]');
 
   return {
     newObject: function() {
       return { id: this.lastId(), name: '', value: '', description: '', type: 'despesa'};
     },
+    beforeSave: function() {
+      if (financas[0].id == 0) {
+        financas.splice(0, 1);
+      }
+    },
     save: function(financa) {
+      this.beforeSave();
       var slice = 0;
       var index = financa.id;
       if (typeof this.get(financa.id) != "undefined") {
