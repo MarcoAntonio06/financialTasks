@@ -98,40 +98,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    .state('tab.receita', {
-      url: '/receita',
+    .state('tab.financa', {
+      url: '/financa',
       views: {
-        'tab-receita': {
-          templateUrl: 'templates/tab-receita.html',
-          controller: 'ReceitaCtrl'
-        }
-      }
-    })
-    .state('tab.receita-detail', {
-      url: '/receita/:financaId',
-      views: {
-        'tab-receita': {
-          templateUrl: 'templates/receita-detail.html',
-          controller: 'ReceitaDetailCtrl'
+        'tab-financa': {
+          templateUrl: 'templates/tab-financa.html',
+          controller: 'FinancaCtrl'
         }
       }
     })
 
-    .state('tab.despesa', {
-      url: '/despesa',
+    .state('tab.financa-detail', {
+      url: '/financa/:financaId',
       views: {
-        'tab-despesa': {
-          templateUrl: 'templates/tab-despesa.html',
-          controller: 'DespesaCtrl'
-        }
-      }
-    })
-    .state('tab.despesa-detail', {
-      url: '/despesa/:financaId',
-      views: {
-        'tab-despesa': {
-          templateUrl: 'templates/despesa-detail.html',
-          controller: 'DespesaDetailCtrl'
+        'tab-financa': {
+          templateUrl: 'templates/detail.html',
+          controller: 'FinancaDetailCtrl'
         }
       }
     });

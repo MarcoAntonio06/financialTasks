@@ -56,25 +56,17 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ReceitaCtrl', function($scope, Financas) {
-  $scope.receitas = Financas.allReceitas();
-})
+.controller('FinancaCtrl', function($scope, $state, $stateParams, Financas) {
+    $scope.financas = Financas.all();
 
-.controller('ReceitaDetailCtrl', function($scope, $state, $stateParams, Financas) {
-  $scope.receita = Financas.get($stateParams.financaId);
-
-    $scope.editaItem = function (id) {
+    $scope.detalhaItem = function (id) {
         var params = {financaId : id}
-        $state.transitionTo('tab.operacao-update', params);
+        $state.go('tab.financa-detail', params);
     };
 })
 
-.controller('DespesaCtrl', function($scope, Financas) {
-  $scope.despesas = Financas.allDespesas();
-})
-
-.controller('DespesaDetailCtrl', function($scope, $state, $stateParams, Financas) {
-    $scope.despesa = Financas.get($stateParams.financaId);
+.controller('FinancaDetailCtrl', function($scope, $state, $stateParams, Financas) {
+    $scope.financa = Financas.get($stateParams.financaId);
 
     $scope.editaItem = function (id) {
         var params = {financaId : id}

@@ -1,0 +1,9 @@
+<ion-view title="Trasações">
+  <ion-content>
+    <div class="paper">
+      <p ng-repeat="financa in financas" ng-class="financa.type" ng-click="detalhaItem(financa.id)">
+        {{financa.name}}: {{financa.value | currency}} <span class="notacao">({{financa.description}})</span>
+      </p>
+    </div>
+  </ion-content>
+</ion-view>

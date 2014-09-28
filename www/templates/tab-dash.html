@@ -1,14 +1,7 @@
 <ion-view title="Financial Tasks">
-    <ion-content class="padding">
-        <div class="card" ng-controller='DashCtrl'>
-            <div class="item item-divider {{classeSaldo}} centralizaTexto">
-                Saldo
-            </div>
-            <div class="item item-text-wrap centralizaTexto">
-                {{saldo | currency}}
-            </div>
-            <div class="item item-divider">
-            </div>
+    <ion-content class="padding fundoPaper">
+        <div class="card paper" ng-controller='DashCtrl'>
+            <p class="{{classeSaldo}}">Saldo {{saldo | currency}}</p>
         </div>
         <ion-item href="#/tab/dash/operacao" class="item-positive">
             <div class="row">
