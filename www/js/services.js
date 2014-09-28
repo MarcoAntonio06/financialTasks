@@ -18,9 +18,23 @@ angular.module('starter.services', [])
     newObject: function() {
       return { id: this.lastId(), name: '', value: '', description: '', type: 'despesa'};
     },
-    add: function(financa) {
-      financas.splice(financa.id, 0, financa);
+    save: function(financa) {
+      var slice = 0;
+      var index = financa.id;
+      if (typeof this.get(financa.id) != "undefined") {
+        slice = 1;
+        index = this.findIndexByKeyValue(financas, 'id', financa.id);
+      }
+      financas.splice(index, slice, financa);
       $window.localStorage['Financas'] = JSON.stringify(financas);
+    },
+    findIndexByKeyValue: function(obj, key, value) {
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i][key] == value) {
+                return i;
+            }
+        }
+        return null;
     },
     lastId: function() {
       return $window.localStorage['idFinancas']++;

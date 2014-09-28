@@ -1,21 +1,18 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
 <ion-view title="Detalhe de {{despesa.name}}">
-  <ion-content has-header="true" padding="true">
-    <div class="card">
-      <div class="item item-divider">
-        {{despesa.name}}
-      </div>
-      <div class="item item-text-wrap">
-        {{despesa.description}}
-      </div>
-      <div class="item item-divider">
-      {{despesa.value | currency}}
-      </div>
-    </div>
-  </ion-content>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-compose" ng-click="editaItem(despesa.id)"></button>
+    </ion-nav-buttons>
+    <ion-content has-header="true" padding="true">
+            <div class="card">
+                <div class="item item-divider">
+                    {{despesa.name}}
+                </div>
+                <div class="item item-text-wrap">
+                    {{despesa.description}}
+                </div>
+                <div class="item item-divider">
+                    {{despesa.value | currency}}
+                </div>
+            </div>
+    </ion-content>
 </ion-view>

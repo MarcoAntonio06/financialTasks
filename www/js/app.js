@@ -88,6 +88,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
+    .state('tab.operacao-update', {
+      url: '/dash/operacao/:financaId',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/operacao.html',
+          controller: 'OperacaoCtrl'
+        }
+      }
+    })
+
     .state('tab.receita', {
       url: '/receita',
       views: {

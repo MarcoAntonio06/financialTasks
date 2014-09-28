@@ -22,9 +22,13 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('OperacaoCtrl', function($scope, $state, Financas) {
+.controller('OperacaoCtrl', function($scope, $state, $stateParams, Financas) {
 
-    $scope.financa = Financas.newObject();
+    if (typeof $stateParams.financaId != "undefined") {
+        $scope.financa = Financas.get($stateParams.financaId);
+    } else {
+        $scope.financa = Financas.newObject();
+    }
 
     $scope.typeList = [
         { text: "Despesa", value: "despesa" },
@@ -46,7 +50,7 @@ angular.module('starter.controllers', [])
         }
 
         if (financaForm.$valid) {
-            Financas.add(financa);
+            Financas.save(financa);
             $state.transitionTo('tab.dash');
         }
     };
@@ -56,14 +60,24 @@ angular.module('starter.controllers', [])
   $scope.receitas = Financas.allReceitas();
 })
 
-.controller('ReceitaDetailCtrl', function($scope, $stateParams, Financas) {
+.controller('ReceitaDetailCtrl', function($scope, $state, $stateParams, Financas) {
   $scope.receita = Financas.get($stateParams.financaId);
+
+    $scope.editaItem = function (id) {
+        var params = {financaId : id}
+        $state.transitionTo('tab.operacao-update', params);
+    };
 })
 
 .controller('DespesaCtrl', function($scope, Financas) {
   $scope.despesas = Financas.allDespesas();
 })
 
-.controller('DespesaDetailCtrl', function($scope, $stateParams, Financas) {
-  $scope.despesa = Financas.get($stateParams.financaId);
+.controller('DespesaDetailCtrl', function($scope, $state, $stateParams, Financas) {
+    $scope.despesa = Financas.get($stateParams.financaId);
+
+    $scope.editaItem = function (id) {
+        var params = {financaId : id}
+        $state.transitionTo('tab.operacao-update', params);
+    };
 });

@@ -5,3 +5,7 @@
 .erro {
 	color: red !important;
 }
+
+.semBorda {
+	border: none;
+}
