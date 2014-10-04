@@ -2,17 +2,17 @@
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-compose" ng-click="editaItem(financa.id)"></button>
     </ion-nav-buttons>
-    <ion-content has-header="true" padding="true">
-            <div class="card">
-                <div class="item item-divider">
+    <ion-content has-header="true" padding="true" class="fundoPaper">
+            <div ng-class="{paper: true}">
+                <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">
                     {{financa.name}}
-                </div>
-                <div class="item item-text-wrap">
+                </p>
+                <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">
                     {{financa.description}}
-                </div>
-                <div class="item item-divider">
+                </p>
+                <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">
                     {{financa.value | currency}}
-                </div>
+                </p>
             </div>
     </ion-content>
 </ion-view>

@@ -26,8 +26,10 @@ angular.module('starter.controllers', [])
 
     if (typeof $stateParams.financaId != "undefined") {
         $scope.financa = Financas.get($stateParams.financaId);
+        $scope.titulo = $scope.financa.name;
     } else {
         $scope.financa = Financas.newObject();
+        $scope.titulo = 'Nova Transação';
     }
 
     $scope.typeList = [

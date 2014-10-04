@@ -2,10 +2,10 @@
 <widget id="com.ionicframework.financialtasks453490" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>financialTasks</name>
   <description>
-        An Ionic Framework and Cordova project.
+        An simple financial tasks.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="marco.araujo.junior@gmail.com" href="http://marcojunior.com.br/">
+      Marco Junior Team
     </author>
   <content src="index.html"/>
   <access origin="*"/>
