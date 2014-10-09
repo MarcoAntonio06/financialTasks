@@ -16,7 +16,7 @@ angular.module('starter.services', [])
 
   return {
     newObject: function() {
-      return { id: this.lastId(), name: '', value: '', description: '', type: 'despesa'};
+      return { id: this.lastId(), name: '', value: '', description: '', type: 'despesa', date: ''};
     },
     beforeSave: function() {
       if (financas[0].id == 0 || typeof financas[0].id == "undefined") {

@@ -39,6 +39,10 @@ angular.module('starter.controllers', [])
 
     $scope.erros = [];
     $scope.adicionaItem = function (financa, financaForm) {
+        if (financaForm.date.$error.required) {
+            $scope.erros.push({campo: 'Data', descricao: 'Campo obrigatório'});
+        }
+
         if (financaForm.name.$error.required) {
             $scope.erros.push({campo: 'Nome', descricao: 'Campo obrigatório'});
         }
