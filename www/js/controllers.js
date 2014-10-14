@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('simplefinancial.controllers', [])
 
 .controller('DashCtrl', function($scope, Financas) {
 
@@ -22,7 +22,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('OperacaoCtrl', function($scope, $state, $stateParams, Financas) {
+.controller('OperacaoCtrl', function($scope, $state, $stateParams, Financas, $localForage) {
 
     if (typeof $stateParams.financaId != "undefined") {
         $scope.financa = Financas.get($stateParams.financaId);
@@ -71,8 +71,13 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('FinancaDetailCtrl', function($scope, $state, $stateParams, Financas) {
-    $scope.financa = Financas.get($stateParams.financaId);
+.controller('FinancaDetailCtrl', function($scope, $state, $stateParams, Financas, $localForage) {
+    //$scope.financa = Financas.get($stateParams.financaId);
+
+    $localForage.getItem($stateParams.financaId).then(function(data) {
+        $scope.financa = data;
+    });
+
 
     $scope.editaItem = function (id) {
         var params = {financaId : id}

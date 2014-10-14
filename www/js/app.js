@@ -1,11 +1,11 @@
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'simplefinancial' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ui.utils.masks'])
+// 'simplefinancial.services' is found in services.js
+// 'simplefinancial.controllers' is found in controllers.js
+angular.module('simplefinancial', ['ionic', 'simplefinancial.controllers', 'simplefinancial.services', 'ui.utils.masks', 'LocalForageModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -121,5 +121,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-});
+})
+
+.config(['$localForageProvider', function($localForageProvider){
+    $localForageProvider.config({
+        name        : 'simpleFinancial', // name of the database and prefix for your data
+        storeName   : 'simpleTable', // name of the table
+        description : 'Isto é um teste'
+    });
+}]);
 
