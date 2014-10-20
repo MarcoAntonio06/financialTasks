@@ -1,7 +1,10 @@
 <ion-view title="Detalhe de {{financa.name}}">
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-compose" ng-click="editaItem(financa.id)"></button>
-    </ion-nav-buttons>
+<div class="bar bar-subheader">
+    <div class="row">
+        <button class="col col-center button button-icon icon ion-compose" ng-click="editaItem(financa.id)"></button>
+        <button class="col col-center button button-icon icon ion-trash-a" ng-click="excluiItem(financa.id)"></button>
+    </div>
+</div>
     <ion-content has-header="true" padding="true" class="fundoPaper">
             <div ng-class="{paper: true}">
                 <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">

@@ -3,7 +3,7 @@ angular.module('simplefinancial.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('Financas', ['$window', '$localForage', function($window, $localForage) {
+.factory('Financas', ['$window', function($window) {
   // Might use a resource here that returns a JSON array
 
     var id = 1;
@@ -19,17 +19,24 @@ angular.module('simplefinancial.services', [])
             return { id: this.lastId(), name: '', value: '', description: '', type: 'despesa', date: ''};
         },
         beforeSave: function() {
-            if (financas[0].id == 0 || typeof financas[0].id == "undefined") {
+            if (typeof financas[0] == "undefined") {
+                return;
+            }
+            if (typeof financas[0].id == "undefined" || financas[0].id == 0) {
                 financas.splice(0, 1);
             }
         },
-
+        delete: function(id) {
+            if (typeof this.get(id) == "undefined") {
+                return false;
+            }
+            slice = 1;
+            index = this.findIndexByKeyValue(financas, 'id', id);
+            financas.splice(index, slice);
+            $window.localStorage['Financas'] = JSON.stringify(financas);
+            return true;
+        },
         save: function(financa) {
-
-            $localForage.setItem(financa.id, financa).then(function(value) {
-
-            });
-
             this.beforeSave();
             var slice = 0;
             var index = financa.id;
@@ -59,7 +66,6 @@ angular.module('simplefinancial.services', [])
             var result = financas.filter(function ( result ) {
                 return result.id == financaId;
             })[0];
-            console.log(resultado);
             return result;
         },
         sumReceita: function() {

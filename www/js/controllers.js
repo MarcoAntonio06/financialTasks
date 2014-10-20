@@ -22,7 +22,7 @@ angular.module('simplefinancial.controllers', [])
     }
 })
 
-.controller('OperacaoCtrl', function($scope, $state, $stateParams, Financas, $localForage) {
+.controller('OperacaoCtrl', function($scope, $state, $stateParams, Financas) {
 
     if (typeof $stateParams.financaId != "undefined") {
         $scope.financa = Financas.get($stateParams.financaId);
@@ -57,7 +57,7 @@ angular.module('simplefinancial.controllers', [])
 
         if (financaForm.$valid) {
             Financas.save(financa);
-            $state.transitionTo('tab.dash');
+            $state.go('tab.dash');
         }
     };
 })
@@ -71,16 +71,22 @@ angular.module('simplefinancial.controllers', [])
     };
 })
 
-.controller('FinancaDetailCtrl', function($scope, $state, $stateParams, Financas, $localForage) {
-    //$scope.financa = Financas.get($stateParams.financaId);
-
-    $localForage.getItem($stateParams.financaId).then(function(data) {
-        $scope.financa = data;
-    });
-
+.controller('FinancaDetailCtrl', function($scope, $state, $stateParams, Financas) {
+    $scope.financa = Financas.get($stateParams.financaId);
 
     $scope.editaItem = function (id) {
         var params = {financaId : id}
         $state.transitionTo('tab.operacao-update', params);
+    };
+
+    $scope.excluiItem = function (id) {
+        if (!confirm('Tem certeza?')) {
+            return;
+        }
+        if(!Financas.delete(id)) {
+            alert('Erro ao excluir.');
+            return;
+        }
+        $state.go('tab.financa');
     };
 });
