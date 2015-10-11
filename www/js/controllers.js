@@ -72,7 +72,7 @@ angular.module('simplefinancial.controllers', [])
 })
 
 .controller('FinancaCtrl', function($scope, $state, $stateParams, Financas) {
-    $scope.financas = Financas.all();
+    $scope.financas = Financas.all().slice(-10);
 
     $scope.detalhaItem = function (id) {
         var params = {financaId : id}

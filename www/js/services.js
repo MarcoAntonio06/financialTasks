@@ -16,7 +16,14 @@ angular.module('simplefinancial.services', [])
 
     return {
         newObject: function() {
-            return { id: this.lastId(), name: '', value: '', description: '', type: 'despesa', date: ''};
+            return {
+                id: this.lastId(),
+                name: '',
+                value: '',
+                description: '',
+                type: 'despesa',
+                date: new Date().toJSON().slice(0,10)
+            };
         },
         beforeSave: function() {
             if (typeof financas[0] == "undefined") {
