@@ -1,3 +1,11 @@
+.oculta {
+    display: none;
+}
+
+.exibe {
+    display: '';
+}
+
 .receita {
     color: #66cc33
 }

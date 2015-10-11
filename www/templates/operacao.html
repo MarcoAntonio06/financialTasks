@@ -1,38 +1,29 @@
 <ion-view title="{{titulo}}">
     <ion-content class="padding">
         <form name="financaForm" novalidate ng-submit="adicionaItem(financa, financaForm)">
-            <button class="button button-block button-positive" type="submit">
-                <i class="icon ion-checkmark-circled"></i> Salvar
-            </button>
-            <div class="item errors">
+            <div class="item errors {{classErro}}">
                 <p  ng-repeat='erro in erros' class="erro">{{erro.campo}}: {{erro.descricao}}</p>
             </div>
-            <div class="list">
-                <label class="item item-input">
-                    <span class="input-label">Nome</span>
-                    <input type="text" name='name' ng-model="financa.name" ng-required="true" ng-minlength="2">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Valor</span>
-                    <input type="text" ui-number-mask name='value' ng-model="financa.value" placeholder='0.00' ng-required="true">
-                </label>
+            <div class="list list-inset">
+                <div class="row">
+                    <div class="item item-input-inset col col-50">
+                        <input placeholder="Descrição" type="text" name='name' ng-model="financa.name" ng-required="true" ng-minlength="2">
+                    </div>
+                    <div class="item item-input-inset col col-50">
+                        <input placeholder="Valor" type="number" name='value' ng-model="financa.value" ng-required="true">
+                    </div>
+                </div>
                 <label class="item item-input">
                     <span class="input-label">Data</span>
                     <input type="date" name='date' ng-model="financa.date" ng-required="true">
                 </label>
-                <label class="item item-input">
-                    <span class="input-label">Descrição</span>
-                    <input type="text" ng-model="financa.description">
-                </label>
-                <div class="item item-divider">
-                    Tipo
-                </div>
-                    <ion-radio ng-repeat="type in typeList"
-                               ng-value="type.value"
-                               ng-model="financa.type">
-                      {{ type.text }}
-                    </ion-radio>
+                <ion-toggle ng-model="financa.type" ng-false-value="despesa" ng-true-value="receita" toggle-class="toggle-calm">
+                    {{financa.type | capitalize}}
+                </ion-toggle>
             </div>
+            <button class="button button-block button-positive" type="submit">
+                <i class="icon ion-checkmark-circled"></i> Salvar
+            </button>
         </form>
     </ion-content>
 </ion-view>

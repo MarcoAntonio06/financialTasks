@@ -14,9 +14,6 @@
                     {{financa.name}}
                 </p>
                 <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">
-                    {{financa.description}}
-                </p>
-                <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">
                     {{financa.value | currency}}
                 </p>
             </div>
