@@ -34,6 +34,41 @@
 	background: url(../img/notebook.png) repeat-y;
 }
 
+.custom-button .button-icon .icon:before, .custom-button.button-icon.icon:before {
+    font-size: 150px;
+}
+
+.without-border {
+    border: none;
+}
+
+.round-border-button {
+    border-radius: 1em !important;
+}
+
+.round-top-left {
+    border-radius: 1em 0 0 0 !important;
+}
+
+.round-top-right {
+    border-radius: 0 1em 0 0 !important;
+}
+
+.round-bottom-right {
+    border-radius: 0 0 1em 0 !important;
+}
+
+.round-bottom-left {
+    border-radius: 0 0 0 1em !important;
+}
+
+.custom-size > .item-content {
+    height: 13em;
+    width: 21.4em;
+    padding-top: 4em;
+    background-color: #e6e4e4;
+    border-color: #e6e4e4;
+}
 
 @font-face {
     font-family: "Loved by the King";

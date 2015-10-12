@@ -3,9 +3,11 @@
         <div class="card paper" ng-controller='DashCtrl'>
             <p class="{{classeSaldo}}">Saldo {{saldo | currency}}</p>
         </div>
-        <ion-item href="#/tab/dash/operacao" class="item-positive">
+        <ion-item href="#/tab/dash/operacao" class="custom-size without-border">
             <div class="row">
-                <div class="col col-33 col-offset-33"><i class="icon ion-plus-circled"></i> Nova Transação</div>
+                <div class="col col-33 col-offset-25">
+                    <i class="round-overlay-button bottom-right button button-large custom-button button-icon icon ion-plus-circled positive"></i>
+                </div>
             </div>
         </ion-item>
     </ion-content>

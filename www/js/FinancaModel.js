@@ -24,7 +24,7 @@ angular.module('simplefinancial.FinancaModel', [])
             .query()
             .then(function(d){
                 var data = d.shift();
-                return data.money;
+                return data.money || 0;
             });
     }
 

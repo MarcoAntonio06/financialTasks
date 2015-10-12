@@ -6,25 +6,26 @@
             </div>
             <div class="list list-inset">
                 <div class="row">
-                    <div class="item item-input-inset col col-50">
+                    <div class="item item-input-inset col col-50 round-top-left">
                         <input placeholder="Descrição" type="text" name='title' ng-model="financa.title" ng-required="true" ng-minlength="2">
                     </div>
-                    <div class="item item-input-inset col col-50">
+                    <div class="item item-input-inset col col-50 round-top-right">
                         <input placeholder="Valor" type="number" name='money' ng-model="financa.money" ng-required="true">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="item item-input col col-50">
+                    <div class="item item-input col col-50 round-bottom-left">
                         <input type="date" name='created_at' ng-model="financa.created_at" ng-required="true">
                     </div>
-                    <ion-toggle ng-model="financa.type" ng-false-value="despesa" ng-true-value="receita" toggle-class="toggle-calm" class="col col-50">
+                    <ion-toggle ng-model="financa.type" ng-false-value="despesa" ng-true-value="receita" toggle-class="toggle-balanced" class="col col-50 round-bottom-right">
                         {{financa.type | capitalize}}
                     </ion-toggle>
                 </div>
             </div>
-            <button class="button button-block button-positive" type="submit">
+            <button class="button button-large button-block button-positive round-border-button" type="submit">
                 <i class="icon ion-checkmark-circled"></i> Salvar
             </button>
+
         </form>
     </ion-content>
 </ion-view>
