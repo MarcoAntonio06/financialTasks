@@ -3,7 +3,7 @@
         <p class="centralizaTexto">{{info}}</p>
         <div class="paper">
             <p ng-repeat="financa in financas" ng-class="financa.type" ng-click="detalhaItem(financa.id)" ng-init="showInfo(financa)">
-                {{financa.date | date:'dd/MM/yyyy'}} {{financa.name}}: {{financa.value | currency}}
+                {{financa.created_at | date:'dd/MM/yyyy'}} {{financa.title}}: {{financa.money | currency}}
             </p>
         </div>
     </ion-content>

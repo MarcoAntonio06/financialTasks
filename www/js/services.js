@@ -18,11 +18,11 @@ angular.module('simplefinancial.services', [])
         newObject: function() {
             return {
                 id: this.lastId(),
-                name: '',
-                value: '',
+                title: '',
+                money: '',
                 description: '',
                 type: 'despesa',
-                date: new Date().toJSON().slice(0,10)
+                created_at: new Date().toJSON().slice(0,10)
             };
         },
         beforeSave: function() {
@@ -79,7 +79,7 @@ angular.module('simplefinancial.services', [])
             var saldo = 0;
             for (i in financas) {
                 if (financas[i].type == 'receita') {
-                    saldo += financas[i].value;
+                    saldo += financas[i].money;
                 }
             }
             return saldo;
@@ -97,7 +97,7 @@ angular.module('simplefinancial.services', [])
             var saldo = 0;
             for (i in financas) {
                 if (financas[i].type == 'despesa') {
-                    saldo += financas[i].value;
+                    saldo += financas[i].money;
                 }
             }
             return saldo;

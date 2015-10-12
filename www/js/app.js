@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'simplefinancial.services' is found in services.js
 // 'simplefinancial.controllers' is found in controllers.js
-angular.module('simplefinancial', ['ionic', 'simplefinancial.controllers', 'simplefinancial.services', 'ui.utils.masks'])
+angular.module('simplefinancial', ['ionic', 'simplefinancial.controllers', 'simplefinancial.services', 'ui.utils.masks', 'wSQL', 'simplefinancial.FinancaModel'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

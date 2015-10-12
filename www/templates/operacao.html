@@ -7,15 +7,15 @@
             <div class="list list-inset">
                 <div class="row">
                     <div class="item item-input-inset col col-50">
-                        <input placeholder="Descrição" type="text" name='name' ng-model="financa.name" ng-required="true" ng-minlength="2">
+                        <input placeholder="Descrição" type="text" name='title' ng-model="financa.title" ng-required="true" ng-minlength="2">
                     </div>
                     <div class="item item-input-inset col col-50">
-                        <input placeholder="Valor" type="number" name='value' ng-model="financa.value" ng-required="true">
+                        <input placeholder="Valor" type="number" name='money' ng-model="financa.money" ng-required="true">
                     </div>
                 </div>
                 <div class="row">
                     <div class="item item-input col col-50">
-                        <input type="date" name='date' ng-model="financa.date" ng-required="true">
+                        <input type="date" name='created_at' ng-model="financa.created_at" ng-required="true">
                     </div>
                     <ion-toggle ng-model="financa.type" ng-false-value="despesa" ng-true-value="receita" toggle-class="toggle-calm" class="col col-50">
                         {{financa.type | capitalize}}

@@ -1,4 +1,4 @@
-<ion-view title="Detalhe de {{financa.name}}">
+<ion-view title="Detalhe de {{financa.title}}">
 <div class="bar bar-subheader">
     <div class="row">
         <button class="col col-center button button-icon icon ion-compose" ng-click="editaItem(financa.id)"></button>
@@ -8,13 +8,13 @@
     <ion-content has-header="true" padding="true" class="fundoPaper">
             <div ng-class="{paper: true}">
                 <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">
-                    {{financa.date | date:'dd/MM/yyyy'}}
+                    {{financa.created_at | date:'dd/MM/yyyy'}}
                 </p>
                 <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">
-                    {{financa.name}}
+                    {{financa.title}}
                 </p>
                 <p ng-class="{balanced: financa.type == 'receita', assertive: financa.type == 'despesa'}">
-                    {{financa.value | currency}}
+                    {{financa.money | currency}}
                 </p>
             </div>
     </ion-content>

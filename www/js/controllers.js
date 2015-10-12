@@ -1,55 +1,61 @@
 angular.module('simplefinancial.controllers', [])
 
-.controller('DashCtrl', function($scope, Financas) {
+.controller('DashCtrl', function($scope, FinancaModel, wSQL) {
 
     $scope.typeList = [
-        { text: "Despesa", value: "despesa" },
-        { text: "Receita", value: "receita" },
+        { text: "Despesa", money: "despesa" },
+        { text: "Receita", money: "receita" },
     ];
 
     $scope.data = {
         defaultType: 'despesa'
     };
 
-    $scope.saldo = Financas.sumReceita() - Financas.sumDespesa();
-
-    $scope.classeSaldo = '';
-    if ($scope.saldo > 0) {
-        $scope.classeSaldo = 'balanced';
-    }
-    if ($scope.saldo < 0) {
-        $scope.classeSaldo = 'assertive';
-    }
+    FinancaModel.setService(wSQL);
+    FinancaModel.saldo().then(function(result){
+        $scope.saldo = result;
+        $scope.classeSaldo = '';
+        if ($scope.saldo > 0) {
+            $scope.classeSaldo = 'balanced';
+        }
+        if ($scope.saldo < 0) {
+            $scope.classeSaldo = 'assertive';
+        }
+    });
 })
 
-.controller('OperacaoCtrl', function($scope, $state, $stateParams, Financas) {
+.controller('OperacaoCtrl', function($scope, $state, $stateParams, FinancaModel, wSQL) {
+
+    FinancaModel.setService(wSQL);
 
     $scope.classErro = 'oculta';
 
     if (typeof $stateParams.financaId != "undefined") {
-        $scope.financa = Financas.get($stateParams.financaId);
-        $scope.titulo = $scope.financa.name;
+        FinancaModel.get($stateParams.financaId).then(function(financa){
+            $scope.financa = financa;
+            $scope.titulo = $scope.financa.title;
+        });
     } else {
-        $scope.financa = Financas.newObject();
+        $scope.financa = FinancaModel.newObject();
         $scope.titulo = 'Nova Transação';
     }
 
     $scope.erros = [];
     $scope.adicionaItem = function (financa, financaForm) {
         $scope.erros = [];
-        if (financaForm.date.$error.required) {
+        if (financaForm.created_at.$error.required) {
             $scope.erros.push({campo: 'Data', descricao: 'Campo obrigatório'});
         }
 
-        if (financaForm.name.$error.required) {
+        if (financaForm.title.$error.required) {
             $scope.erros.push({campo: 'Nome', descricao: 'Campo obrigatório'});
         }
 
-        if (financaForm.value.$error.required) {
+        if (financaForm.money.$error.required) {
             $scope.erros.push({campo: 'Valor', descricao: 'Campo obrigatório'});
         }
 
-        if (financaForm.name.$error.minlength) {
+        if (financaForm.title.$error.minlength) {
             $scope.erros.push({campo: 'Nome', descricao: 'Muito Curto'});
         }
         financa.type = financa.type.toLowerCase();
@@ -59,7 +65,7 @@ angular.module('simplefinancial.controllers', [])
         }
 
         if (financaForm.$valid) {
-            Financas.save(financa);
+            FinancaModel.save(financa);
             $state.go('tab.dash');
         }
     };
@@ -71,12 +77,18 @@ angular.module('simplefinancial.controllers', [])
     }
 })
 
-.controller('FinancaCtrl', function($scope, $state, $stateParams, Financas) {
-    $scope.financas = Financas.all().slice(-10);
+.controller('FinancaCtrl', function($scope, $state, $stateParams, FinancaModel, wSQL) {
+
+    FinancaModel.setService(wSQL);
+
+    //$scope.financas = FinancaModel.all().slice(-10);
+    FinancaModel.all().then(function(data){
+        $scope.financas = data;
+    });
 
     $scope.showInfo = function(financa) {
         if (financa.id != undefined) {
-            $scope.info = financa.id + ': ' + financa.name + ' carregado!';
+            $scope.info = financa.id + ': ' + financa.title + ' carregado!';
         }
     };
 
@@ -86,8 +98,13 @@ angular.module('simplefinancial.controllers', [])
     };
 })
 
-.controller('FinancaDetailCtrl', function($scope, $state, $stateParams, Financas) {
-    $scope.financa = Financas.get($stateParams.financaId);
+.controller('FinancaDetailCtrl', function($scope, $state, $stateParams, FinancaModel, wSQL) {
+
+    FinancaModel.setService(wSQL);
+
+    FinancaModel.get($stateParams.financaId).then(function(financa){
+        $scope.financa = financa;
+    });
 
     $scope.editaItem = function (id) {
         var params = {financaId : id}
@@ -98,7 +115,7 @@ angular.module('simplefinancial.controllers', [])
         if (!confirm('Tem certeza?')) {
             return;
         }
-        if(!Financas.delete(id)) {
+        if(!FinancaModel.delete(id)) {
             alert('Erro ao excluir.');
             return;
         }
