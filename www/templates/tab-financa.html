@@ -1,9 +1,10 @@
-<ion-view title="Trasações">
-  <ion-content class="fundoPaper">
-    <div class="paper">
-      <p ng-repeat="financa in financas" ng-class="financa.type" ng-click="detalhaItem(financa.id)">
-        {{financa.date | date:'dd/MM/yyyy'}} {{financa.name}}: {{financa.value | currency}}
-      </p>
-    </div>
-  </ion-content>
-</ion-view>
+    <ion-view title="Trasações">
+    <ion-content class="fundoPaper">
+        <p class="centralizaTexto">{{info}}</p>
+        <div class="paper">
+            <p ng-repeat="financa in financas" ng-class="financa.type" ng-click="detalhaItem(financa.id)" ng-init="showInfo(financa)">
+                {{financa.date | date:'dd/MM/yyyy'}} {{financa.name}}: {{financa.value | currency}}
+            </p>
+        </div>
+    </ion-content>
+    </ion-view>

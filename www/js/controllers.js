@@ -74,6 +74,12 @@ angular.module('simplefinancial.controllers', [])
 .controller('FinancaCtrl', function($scope, $state, $stateParams, Financas) {
     $scope.financas = Financas.all().slice(-10);
 
+    $scope.showInfo = function(financa) {
+        if (financa.id != undefined) {
+            $scope.info = financa.id + ': ' + financa.name + ' carregado!';
+        }
+    };
+
     $scope.detalhaItem = function (id) {
         var params = {financaId : id}
         $state.go('tab.financa-detail', params);

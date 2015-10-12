@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'simplefinancial.services' is found in services.js
 // 'simplefinancial.controllers' is found in controllers.js
-angular.module('simplefinancial', ['ionic', 'simplefinancial.controllers', 'simplefinancial.services', 'ui.utils.masks', 'LocalForageModule'])
+angular.module('simplefinancial', ['ionic', 'simplefinancial.controllers', 'simplefinancial.services', 'ui.utils.masks'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -121,13 +121,5 @@ angular.module('simplefinancial', ['ionic', 'simplefinancial.controllers', 'simp
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-})
-
-.config(['$localForageProvider', function($localForageProvider){
-    $localForageProvider.config({
-        name        : 'simpleFinancial', // name of the database and prefix for your data
-        storeName   : 'simpleTable', // name of the table
-        description : 'Isto é um teste'
-    });
-}]);
+});
 
