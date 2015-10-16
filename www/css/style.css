@@ -62,10 +62,15 @@
     border-radius: 0 0 0 1em !important;
 }
 
+.custom-size {
+    background-color: #e6e4e4;
+    border-color: #e6e4e4;
+}
+
 .custom-size > .item-content {
     height: 13em;
-    width: 21.4em;
-    padding-top: 4em;
+/*    width: 21.4em; */
+    padding: 0 !important;
     background-color: #e6e4e4;
     border-color: #e6e4e4;
 }
